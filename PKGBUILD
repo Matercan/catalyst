@@ -13,7 +13,6 @@ sha256sums=('SKIP')
 
 
 build() {
-	cd "$pkgname"
 	g++ main.cpp -o catalyst-bin -l jsoncpp 
 }
 
