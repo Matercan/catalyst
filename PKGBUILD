@@ -21,4 +21,5 @@ package() {
     cd "$pkgname"
     install -Dm755 catalyst-bin "$pkgdir/usr/bin/catalyst"
     install -Dm644 README.md "$pkgdir/usr/share/doc/$pkgname/README.md"
+    touch "${XDG_CONFIG_HOME}/catalyst/config.json"
 }

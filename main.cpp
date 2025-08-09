@@ -139,6 +139,9 @@ class FileEditor {
       string key = km.keySequence[i];
       commaPos = getPositionsOfCommas(line);
 
+      if (key == "MAINDMOD")
+        key = "$mainMod";
+
       bool isModifier =
           find(begin(modifiers), end(modifiers), key) != end(modifiers);
       if (isModifier) {
