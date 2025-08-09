@@ -20,9 +20,12 @@ g++ main.cpp -o catalyst -l jsoncpp
 mv catalyst /usr/bin/
 ```
 
-**From the aur**
+**On arch**
 
-To be added soon
+```Shell
+git clone https://github.com/Matercan/catalyst.git
+makepkg -si
+```
 
 ## Usage
 
