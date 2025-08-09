@@ -20,7 +20,6 @@ build() {
 package() {
     cd "$pkgname-master"
     install -Dm755 catalyst-bin "$pkgdir/usr/bin/catalyst"
-    install -Dm644 schema.json "$pkgdir/etc/catalyst/catalyst.schema.json"
     ln -s /etc/catalyst/catalyst.schema.json ~/.config/catalyst.schema.json
     install -Dm644 README.md "$pkgdir/usr/share/doc/$pkgname/README.md"
 }
