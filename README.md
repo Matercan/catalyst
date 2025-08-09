@@ -4,6 +4,9 @@
 Catalyst is a "plugin" for hyprland that creates your keybinds based off json instead of hyprland.
 It is only dependent on hyprland
 
+## Requirements
+hyprland
+
 ## Installing
 
 **From source**
