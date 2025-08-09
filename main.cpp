@@ -259,6 +259,21 @@ int main(int argc, char *argv[]) {
         std::cerr << "Error --keybinds-file requires argument." << endl;
         return 1;
       }
+    } else if (strcmp(argv[i], "--help") == 0) {
+      cout << "What is catalyst?" << endl;
+      cout << "Catalyst is a package which allows you to use JSON to create "
+              "keybinds in hyprland \n"
+              "Your config file is by default stored in "
+              "~/.config/catalyst/config.json \n"
+              "Args: "
+           << endl
+           << endl;
+      cout << "catalyst --help:                 Shows this text" << endl;
+      cout << "catalyst --config:               Sets your config file" << endl;
+      cout
+          << "catalyst --keybinds-file:        Sets the file with your keybinds"
+          << endl;
+      return 0;
     }
   }
 
