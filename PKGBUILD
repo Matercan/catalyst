@@ -8,16 +8,17 @@ url="https://github.com/Matercan/catalyst"
 license=('GPL')
 depends=('hyprland>=v0.49.0' 'wayland')
 makedepends=('gcc' 'git')
-source=('https://github.com/Matercan/catalyst.git')
+source=('git+https://github.com/Matercan/catalyst.git')
 sha256sums=('SKIP')
 
 
 build() {
-	g++ main.cpp -o catalyst-bin -l jsoncpp 
+    cd "$pkgname"
+    g++ main.cpp -o catalyst-bin -l jsoncpp  
 }
 
 package() {
-	cd "$pkgname"
-	install -Dm755 .tiramisu "$pkgdir/usr/bin/tiramisu"
-	install -Dm644 ./README.md "$pkgdir/usr/share/doc/$pkgname"
+    cd "$pkgname"
+    install -Dm755 catalyst-bin "$pkgdir/usr/bin/catalyst"
+    install -Dm644 README.md "$pkgdir/usr/share/doc/$pkgname/README.md"
 }
