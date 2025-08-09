@@ -1,0 +1,16 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://example.com/schemas/user-schema.json",
+  "title": "Keybind",
+  "description": "A schema for a singular keymap",
+  "properties": {
+    "key-sequence": {
+      "type": "array",
+      "description": "The keys neccessary to run the command"
+    },
+    "command": {
+      "type": "string",
+      "description": "What pressing the keys does to the keymap"
+    }
+  }
+}
