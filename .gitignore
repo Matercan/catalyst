@@ -2,3 +2,5 @@
 *.swp
 
 *-bin
+src
+pkg
