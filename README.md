@@ -7,6 +7,7 @@ It is only dependent on hyprland
 ## Installing
 
 **From source**
+
 Install the build requirements with a package manager of your choice:
 - git
 - gcc
@@ -20,6 +21,7 @@ mv catalyst /usr/bin/
 ```
 
 **From the aur**
+
 To be added soon
 
 ## Usage
