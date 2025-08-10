@@ -27,8 +27,9 @@ touch ~/.config/catalyst/config.jsonc
 
 **On arch**
 
+Copy PKGBUILD onto your system
+
 ```bash
-git clone https://github.com/Matercan/catalyst.git
 makepkg -si
 ```
 
