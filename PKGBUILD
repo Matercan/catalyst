@@ -1,7 +1,7 @@
 # Maintainer: Matercan<172917897+Matercan@users.noreply.github.com>
 pkgname='catalyst'
-pkgver=1.0.3
-pkgrel=4
+pkgver=1.0.5
+pkgrel=6
 pkgdesc="Hyprland keybinds, the Nix way"
 arch=('x86_64')
 url="https://github.com/Matercan/catalyst"
