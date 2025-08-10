@@ -64,9 +64,17 @@ private:
     return std::regex_replace(input, multiLineComment, "");
   }
 
+  // Remove the schema line with better whitespace handling
+  std::string removeSchemaLine(const std::string &input) {
+    std::regex schemaLine(R"(\s*"?\$schema"?\s*:\s*"[^"]*",?\s*(?:\r?\n)?)",
+                          std::regex_constants::multiline);
+    return std::regex_replace(input, schemaLine, "");
+  }
+
   // Convert JSONC to JSON by removing comments
   std::string preprocessJSONC(const std::string &jsonc) {
     std::string result = jsonc;
+    result = removeSchemaLine(result);
     result = removeMultiLineComments(result);
     result = removeSingleLineComments(result);
     return result;
