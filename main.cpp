@@ -284,8 +284,8 @@ class FileEditor {
   }
 
   string formatKeyMap(Keymap km) {
-    string line = "bind = , , exec, ";
-    string modifiers[] = {"CONTROL", "MAINMOD", "SHIFT", "SUPER"};
+    string line = "bind =,, exec, ";
+    string modifiers[] = {"CONTROL", "MAINMOD", "SHIFT", "SUPER", "$mainMod"};
 
     vector<int> commaPos = getPositionsOfCommas(line);
     line.append(km.command); // We always know the command will be last
