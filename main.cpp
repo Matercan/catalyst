@@ -284,8 +284,8 @@ class FileEditor {
   }
 
   string formatKeyMap(Keymap km) {
-    string line = "bind = , , exec, ";
-    string modifiers[] = {"CONTROL", "MAINMOD", "SHIFT", "SUPER"};
+    string line = "bind =,, exec, ";
+    string modifiers[] = {"CONTROL", "MAINMOD", "SHIFT", "SUPER", "$mainMod"};
 
     vector<int> commaPos = getPositionsOfCommas(line);
     line.append(km.command); // We always know the command will be last
@@ -392,6 +392,20 @@ public:
     readFile();
     writeToConfigFile();
   }
+
+  FileEditor(string keyBindsFile = "") {
+    if (keyBindsFile.empty()) {
+      const char *homeDir = std::getenv("HOME");
+      configFile = fs::path(homeDir) / ".config/hypr/hyprland.conf";
+    } else {
+      configFile = fs::path(keyBindsFile);
+    }
+
+    readFile();
+    ofstream o(configFile);
+    o << fileContents;
+    o.close();
+  }
 };
 
 int main(int argc, char *argv[]) {
@@ -399,7 +413,7 @@ int main(int argc, char *argv[]) {
   string keybindsFile = "";
 
   for (int i = 1; i < argc; ++i) {
-    if (strcmp(argv[i], "--config") == 0) {
+    if (strcmp(argv[i], "--config") == 0 || strcmp(argv[i], "-c") == 0) {
       if (i + 1 < argc) {
         configFile = argv[i + 1];
         ++i; // Skip next argument since we consumed it
@@ -407,7 +421,8 @@ int main(int argc, char *argv[]) {
         std::cerr << "Error: --config requires an argument." << endl;
         return 1;
       }
-    } else if (strcmp(argv[i], "--keybinds-file") == 0) {
+    } else if (strcmp(argv[i], "--keybinds-file") == 0 ||
+               strcmp(argv[i], "-k") == 0) {
       if (i + 1 < argc) {
         keybindsFile = argv[i + 1];
         ++i; // Skip next argument since we consumed it
@@ -415,20 +430,27 @@ int main(int argc, char *argv[]) {
         std::cerr << "Error --keybinds-file requires argument." << endl;
         return 1;
       }
-    } else if (strcmp(argv[i], "--help") == 0) {
-      cout << "What is catalyst?" << endl;
+    } else if (strcmp(argv[i], "--help") == 0 || strcmp(argv[i], "-h") == 0) {
       cout << "Catalyst is a package which allows you to use JSON to create "
-              "keybinds in hyprland \n"
+              "keybinds in hyprland \n\n"
               "Your config file is by default stored in "
               "~/.config/catalyst/config.jsonc \n"
               "Args: "
            << endl
            << endl;
-      cout << "catalyst --help:                 Shows this text" << endl;
-      cout << "catalyst --config:               Sets your config file" << endl;
-      cout << "catalyst --keybinds-file:        Sets the file with your "
+      cout << "catalyst [-h] --help:                 Shows this text" << endl;
+      cout << "catalyst [-c] --config:               Sets your config file"
+           << endl;
+      cout << "catalyst [-k] --keybinds-file:        Sets the file with your "
               "keybinds"
            << endl;
+      cout << "catalyst [-u] --undo                  Undoes the current "
+              "catalyst config"
+           << endl;
+      return 0;
+    } else if (strcmp(argv[i], "--undo") == 0 || strcmp(argv[i], "-u") == 0) {
+      FileEditor *undoer = new FileEditor(keybindsFile);
+      delete undoer;
       return 0;
     }
   }
